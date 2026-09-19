@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Dashboard | Ab Marshall Forex Challenge
+  </title>
+
+
+  <!-- GLOBAL CSS -->
+
+  <link
+    rel="stylesheet"
+    href="../css/global.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../css/responsive.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../css/dashboard.css"
+  >
+
+
+  <!-- SUPABASE -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
+
+  <script src="../js/supabase.js"></script>
+
+  <script src="../js/auth.js"></script>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================================
+       SIDEBAR
+  ========================================== -->
+
+  <aside
+    class="sidebar"
+    id="sidebar"
+  >
+
+    <div class="brand">
+
+      <img
+        src="../assets/logo.png"
+        alt="Ab Marshall"
+      >
+
+      <span>
+        AB MARSHALL
+      </span>
+
+    </div>
+
+
+    <nav class="navigation">
+
+
+      <a
+        href="dashboard.html"
+        class="nav-link active"
+      >
+
+        <span class="nav-icon">
+          ▦
+        </span>
+
+        <span>
+          Dashboard
+        </span>
+
+      </a>
+
+
+      <a
+        href="trade-journal.html"
+        class="nav-link"
+      >
+
+        <span class="nav-icon">
+          ▤
+        </span>
+
+        <span>
+          Trade Journal
+        </span>
+
+      </a>
+
+
+      <a
+        href="challenge.html"
+        class="nav-link"
+      >
+
+        <span class="nav-icon">
+          ◈
+        </span>
+
+        <span>
+          Challenge
+        </span>
+
+      </a>
+
+
+      <a
+        href="analytics.html"
+        class="nav-link"
+      >
+
+        <span class="nav-icon">
+          ◒
+        </span>
+
+        <span>
+          Analytics
+        </span>
+
+      </a>
+
+
+      <a
+        href="leaderboard.html"
+        class="nav-link"
+      >
+
+        <span class="nav-icon">
+          ♛
+        </span>
+
+        <span>
+          Leaderboard
+        </span>
+
+      </a>
+
+
+      <a
+        href="profile.html"
+        class="nav-link"
+      >
+
+        <span class="nav-icon">
+          ◯
+        </span>
+
+        <span>
+          Profile
+        </span>
+
+      </a>
+
+
+      <a
+        href="settings.html"
+        class="nav-link"
+      >
+
+        <span class="nav-icon">
+          ⚙
+        </span>
+
+        <span>
+          Settings
+        </span>
+
+      </a>
+
+
+    </nav>
+
+
+    <button
+      class="logout-btn"
+      onclick="logout()"
+      type="button"
+    >
+      LOG OUT
+    </button>
+
+  </aside>
+
+
+
+  <!-- =========================================
+       MAIN CONTENT
+  ========================================== -->
+
+  <main class="main-content">
+
+
+    <!-- =======================================
+         TOPBAR
+    ======================================== -->
+
+    <header class="topbar">
+
+
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        type="button"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+
+      <div>
+
+        <h1>
+          Dashboard
+        </h1>
+
+        <p>
+          Welcome back to your trading workspace.
+        </p>
+
+      </div>
+
+
+      <a
+        href="trade-journal.html"
+        class="primary-btn"
+      >
+        ADD TRADE
+      </a>
+
+
+    </header>
+
+
+
+    <!-- =======================================
+         DASHBOARD CONTENT
+    ======================================== -->
+
+    <section class="dashboard-container">
+
+
+      <!-- =====================================
+           HERO
+      ====================================== -->
+
+      <div class="dashboard-hero">
+
+
+        <div class="dashboard-hero-content">
+
+          <span class="section-label">
+            AB MARSHALL FOREX CHALLENGE
+          </span>
+
+
+          <h1>
+            Trade with discipline.
+            Track every decision.
+          </h1>
+
+
+          <p>
+            Keep your trading records organized
+            and monitor your progress.
+          </p>
+
+        </div>
+
+
+        <div class="dashboard-hero-action">
+
+          <a
+            href="trade-journal.html"
+            class="primary-btn"
+          >
+            ADD TRADE
+          </a>
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- =====================================
+           STATS
+      ====================================== -->
+
+      <div class="dashboard-stats">
+
+
+        <!-- TOTAL TRADES -->
+
+        <div class="dashboard-stat">
+
+          <span class="dashboard-stat-label">
+            Total Trades
+          </span>
+
+          <strong
+            id="totalTrades"
+            class="dashboard-stat-value"
+          >
+            0
+          </strong>
+
+        </div>
+
+
+        <!-- WINS -->
+
+        <div class="dashboard-stat">
+
+          <span class="dashboard-stat-label">
+            Wins
+          </span>
+
+          <strong
+            id="totalWins"
+            class="dashboard-stat-value win"
+          >
+            0
+          </strong>
+
+        </div>
+
+
+        <!-- LOSSES -->
+
+        <div class="dashboard-stat">
+
+          <span class="dashboard-stat-label">
+            Losses
+          </span>
+
+          <strong
+            id="totalLosses"
+            class="dashboard-stat-value loss"
+          >
+            0
+          </strong>
+
+        </div>
+
+
+        <!-- PROFIT / LOSS -->
+
+        <div class="dashboard-stat">
+
+          <span class="dashboard-stat-label">
+            Profit / Loss
+          </span>
+
+          <strong
+            id="totalProfitLoss"
+            class="dashboard-stat-value"
+          >
+            $0.00
+          </strong>
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- =====================================
+           PERFORMANCE + QUICK ACTIONS
+      ====================================== -->
+
+      <div class="dashboard-grid">
+
+
+        <!-- PERFORMANCE -->
+
+        <section class="dashboard-panel">
+
+
+          <div class="dashboard-panel-header">
+
+            <div>
+
+              <span class="section-label">
+                PERFORMANCE
+              </span>
+
+              <h2>
+                Trading Performance
+              </h2>
+
+              <p>
+                Your current trading statistics.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="performance">
+
+
+            <div class="performance-circle">
+
+              <span id="winRate">
+                0%
+              </span>
+
+              <small>
+                Win Rate
+              </small>
+
+            </div>
+
+
+            <div class="performance-info">
+
+
+              <div class="metric">
+
+                <span>
+                  Win Rate
+                </span>
+
+                <strong id="winRateMetric">
+                  0%
+                </strong>
+
+              </div>
+
+
+              <div class="win-rate-bar">
+
+                <span
+                  id="winRateBar"
+                  style="width: 0%;"
+                ></span>
+
+              </div>
+
+
+              <div class="metric">
+
+                <span>
+                  Breakeven
+                </span>
+
+                <strong id="totalBreakeven">
+                  0
+                </strong>
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+        </section>
+
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="dashboard-panel">
+
+
+          <div class="dashboard-panel-header">
+
+            <div>
+
+              <span class="section-label">
+                QUICK ACTIONS
+              </span>
+
+              <h2>
+                Manage Trading
+              </h2>
+
+              <p>
+                Manage your trading activity.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="quick-actions">
+
+
+            <a
+              href="trade-journal.html"
+              class="quick-action"
+            >
+
+              <span>
+                +
+              </span>
+
+              <strong>
+                Add Trade
+              </strong>
+
+            </a>
+
+
+            <a
+              href="analytics.html"
+              class="quick-action"
+            >
+
+              <span>
+                ◒
+              </span>
+
+              <strong>
+                Analytics
+              </strong>
+
+            </a>
+
+
+            <a
+              href="challenge.html"
+              class="quick-action"
+            >
+
+              <span>
+                ◈
+              </span>
+
+              <strong>
+                Challenge
+              </strong>
+
+            </a>
+
+
+            <a
+              href="trade-journal.html"
+              class="quick-action"
+            >
+
+              <span>
+                ▤
+              </span>
+
+              <strong>
+                Trade Journal
+              </strong>
+
+            </a>
+
+
+          </div>
+
+
+        </section>
+
+
+      </div>
+
+
+
+      <!-- =====================================
+           CHALLENGE SUMMARY
+      ====================================== -->
+
+      <section class="challenge-summary-card">
+
+
+        <div class="section-header">
+
+
+          <div>
+
+            <span class="section-label">
+              CHALLENGE
+            </span>
+
+            <h2>
+              Challenge Summary
+            </h2>
+
+            <p>
+              Your current trading challenge.
+            </p>
+
+          </div>
+
+
+          <a
+            href="challenge.html"
+            class="secondary-btn"
+          >
+            VIEW CHALLENGE
+          </a>
+
+
+        </div>
+
+
+
+        <!-- NO CHALLENGE -->
+
+        <div
+          id="dashboardChallengeEmpty"
+          class="challenge-empty"
+        >
+
+          <div class="challenge-empty-icon">
+            ◈
+          </div>
+
+
+          <h3>
+            No Active Challenge
+          </h3>
+
+
+          <p>
+            Start a challenge and track your
+            progress here.
+          </p>
+
+
+          <a
+            href="challenge.html"
+            class="primary-btn"
+          >
+            START CHALLENGE
+          </a>
+
+        </div>
+
+
+
+        <!-- ACTIVE CHALLENGE -->
+
+        <div
+          id="dashboardChallenge"
+          class="dashboard-challenge"
+        >
+
+
+          <!-- CHALLENGE TOP -->
+
+          <div class="dashboard-challenge-top">
+
+
+            <div>
+
+              <span class="challenge-label">
+                CURRENT CHALLENGE
+              </span>
+
+
+              <h3
+                id="dashboardChallengeName"
+                class="dashboard-challenge-name"
+              >
+                Challenge
+              </h3>
+
+
+              <p
+                id="dashboardChallengeStarted"
+                class="dashboard-challenge-started"
+              >
+                Started —
+              </p>
+
+            </div>
+
+
+            <span
+              id="dashboardChallengeStatus"
+              class="challenge-status active"
+            >
+              ACTIVE
+            </span>
+
+
+          </div>
+
+
+
+          <!-- BALANCE -->
+
+          <div class="dashboard-challenge-balance">
+
+
+            <div class="challenge-balance-box">
+
+              <span>
+                Current Balance
+              </span>
+
+              <strong
+                id="dashboardCurrentBalance"
+              >
+                $0.00
+              </strong>
+
+            </div>
+
+
+            <div class="challenge-balance-box">
+
+              <span>
+                Target Balance
+              </span>
+
+              <strong
+                id="dashboardTargetBalance"
+              >
+                $0.00
+              </strong>
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- PROGRESS -->
+
+          <div class="dashboard-challenge-progress">
+
+
+            <div class="progress-info">
+
+              <span>
+                Challenge Progress
+              </span>
+
+              <strong
+                id="dashboardProgressPercent"
+              >
+                0.0%
+              </strong>
+
+            </div>
+
+
+            <div class="progress-track">
+
+              <span
+                id="dashboardChallengeProgressBar"
+                class="progress-fill"
+              ></span>
+
+            </div>
+
+
+            <div class="progress-values">
+
+              <span id="dashboardProgressStart">
+                $0.00
+              </span>
+
+              <span id="dashboardProgressTarget">
+                $0.00
+              </span>
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- CURRENT PROFIT / LOSS -->
+
+          <div class="dashboard-challenge-profit">
+
+            <span>
+              Current Profit / Loss
+            </span>
+
+
+            <strong
+              id="dashboardCurrentProfit"
+            >
+              $0.00
+            </strong>
+
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+
+
+      <!-- =====================================
+           RECENT TRADES
+      ====================================== -->
+
+      <section class="recent-trades">
+
+
+        <div class="panel-header">
+
+
+          <div>
+
+            <span class="section-label">
+              TRADE JOURNAL
+            </span>
+
+            <h2>
+              Recent Trades
+            </h2>
+
+          </div>
+
+
+          <a
+            href="trade-journal.html"
+            class="text-link"
+          >
+            VIEW ALL
+          </a>
+
+
+        </div>
+
+
+
+        <div class="table-wrapper">
+
+
+          <table>
+
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Pair
+                </th>
+
+                <th>
+                  Direction
+                </th>
+
+                <th>
+                  SL
+                </th>
+
+                <th>
+                  TP
+                </th>
+
+                <th>
+                  P/L
+                </th>
+
+                <th>
+                  Result
+                </th>
+
+                <th>
+                  Date
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+
+            <tbody id="recentTradesBody">
+
+
+              <tr>
+
+                <td
+                  colspan="7"
+                  class="empty-row"
+                >
+                  Loading trades...
+                </td>
+
+              </tr>
+
+
+            </tbody>
+
+
+          </table>
+
+
+        </div>
+
+
+      </section>
+
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
+  <script src="../js/dashboard.js"></script>
+
+  <script src="../app.js"></script>
+
+
+</body>
+
+</html>

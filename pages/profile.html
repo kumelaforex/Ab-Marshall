@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Profile | Ab Marshall Forex Challenge</title>
+  
+  <link rel="stylesheet" href="../css/profile.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/auth.js"></script>
+</head>
+
+<body>
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+      <img src="../assets/logo.png" alt="Ab Marshall">
+      <span>AB MARSHALL</span>
+    </div>
+
+    <nav class="nav-menu">
+
+      <a href="dashboard.html" class="nav-link">
+        <span>▦</span>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="trade-journal.html" class="nav-link">
+        <span>▤</span>
+        <span>Trade Journal</span>
+      </a>
+
+      <a href="challenge.html" class="nav-link">
+        <span>◈</span>
+        <span>Challenge</span>
+      </a>
+
+      <a href="analytics.html" class="nav-link">
+        <span>◒</span>
+        <span>Analytics</span>
+      </a>
+
+      <a href="leaderboard.html" class="nav-link">
+        <span>♛</span>
+        <span>Leaderboard</span>
+      </a>
+
+      <a href="profile.html" class="nav-link active">
+        <span>◯</span>
+        <span>Profile</span>
+      </a>
+
+      <a href="settings.html" class="nav-link">
+        <span>⚙</span>
+        <span>Settings</span>
+      </a>
+
+    </nav>
+
+    <button class="logout-btn" onclick="logout()">
+      LOG OUT
+    </button>
+
+  </aside>
+
+
+  <main class="main-content">
+
+    <header class="topbar">
+
+      <button class="menu-btn" id="menuBtn">
+        ☰
+      </button>
+
+      <div>
+        <h1>Profile</h1>
+        <p>Manage your personal information.</p>
+      </div>
+
+    </header>
+
+
+    <section class="dashboard-container">
+
+      <section class="panel profile-card">
+
+        <div class="profile-header">
+
+          <div class="avatar" id="profileAvatar">
+            A
+          </div>
+
+          <div>
+            <h2 id="profileName">Loading...</h2>
+            <p id="profileEmail">Loading...</p>
+          </div>
+
+        </div>
+
+
+        <form id="profileForm">
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label for="fullName">
+                Full Name
+              </label>
+
+              <input
+                type="text"
+                id="fullName"
+                placeholder="Your full name"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="username">
+                Username
+              </label>
+
+              <input
+                type="text"
+                id="username"
+                placeholder="Your username"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="language">
+                Language
+              </label>
+
+              <select id="language">
+
+                <option value="en">
+                  English
+                </option>
+
+                <option value="om">
+                  Afaan Oromoo
+                </option>
+
+                <option value="am">
+                  Amharic
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="profileMessage"
+            class="form-message">
+          </div>
+
+
+          <button
+            type="submit"
+            class="primary-btn">
+            SAVE CHANGES
+          </button>
+
+        </form>
+
+      </section>
+
+    </section>
+
+  </main>
+
+
+  <script src="../js/profile.js"></script>
+  <script src="../app.js"></script>
+
+</body>
+</html>
