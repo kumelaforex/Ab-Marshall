@@ -14,20 +14,13 @@
     --sidebar-width: 220px;
   }
 
-
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-
   .dashboard-grid {
     grid-template-columns: 1fr;
   }
-
-
-  /* -----------------------------------------
-     3D TABLET CARDS
-  ----------------------------------------- */
 
   .stat-card,
   .panel,
@@ -50,7 +43,6 @@
 
 @media (max-width: 700px) {
 
-
   /* -----------------------------------------
      MENU BUTTON
   ----------------------------------------- */
@@ -70,10 +62,16 @@
 
     flex-shrink: 0;
 
-    border: 0;
+    border: 1px solid var(--gray-200);
     border-radius: 10px;
 
     cursor: pointer;
+
+    pointer-events: auto;
+
+    background: var(--white);
+
+    color: var(--black);
 
     box-shadow:
       0 5px 12px rgba(0, 0, 0, 0.10),
@@ -81,9 +79,9 @@
 
     transition:
       transform 0.2s ease,
-      box-shadow 0.2s ease;
+      box-shadow 0.2s ease,
+      background 0.2s ease;
   }
-
 
   .menu-btn:hover {
     transform: translateY(-2px);
@@ -91,7 +89,6 @@
     box-shadow:
       0 8px 16px rgba(0, 0, 0, 0.13);
   }
-
 
   .menu-btn:active {
     transform: translateY(1px);
@@ -106,7 +103,6 @@
   ----------------------------------------- */
 
   .sidebar {
-
     position: fixed;
 
     top: 0;
@@ -137,9 +133,7 @@
     -webkit-overflow-scrolling: touch;
   }
 
-
   .sidebar.open {
-
     transform: translateX(0);
 
     visibility: visible;
@@ -153,22 +147,72 @@
 
   /* -----------------------------------------
      SIDEBAR NAVIGATION
+     IMPORTANT:
+     HTML uses .nav-menu
   ----------------------------------------- */
 
+  .sidebar .nav-menu,
   .sidebar .navigation {
     position: relative;
+
     z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    width: 100%;
+
+    pointer-events: auto;
   }
 
-
   .sidebar .nav-link {
-
     position: relative;
+
     z-index: 2;
+
+    width: 100%;
 
     pointer-events: auto;
 
     cursor: pointer;
+
+    touch-action: manipulation;
+  }
+
+  .sidebar .nav-link:active {
+    transform:
+      translateX(2px)
+      translateY(1px);
+  }
+
+
+  /* -----------------------------------------
+     SIDEBAR BRAND
+  ----------------------------------------- */
+
+  .sidebar .brand {
+    flex-shrink: 0;
+
+    position: relative;
+
+    z-index: 2;
+  }
+
+
+  /* -----------------------------------------
+     LOGOUT
+  ----------------------------------------- */
+
+  .sidebar .logout-btn {
+    position: relative;
+
+    z-index: 2;
+
+    flex-shrink: 0;
+
+    pointer-events: auto;
   }
 
 
@@ -177,10 +221,10 @@
   ----------------------------------------- */
 
   .main-content {
-
     margin-left: 0;
 
     width: 100%;
+    max-width: 100%;
 
     min-width: 0;
 
@@ -198,18 +242,42 @@
   ----------------------------------------- */
 
   .topbar {
+    position: fixed;
 
-    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
 
     z-index: 1000;
 
     min-width: 0;
+
+    padding: 0 16px;
+  }
+
+  .topbar > div {
+    min-width: 0;
+
+    overflow: hidden;
   }
 
 
-  .topbar > div {
+  .topbar h1 {
+    white-space: nowrap;
 
-    min-width: 0;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+  }
+
+  .topbar p {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
   }
 
 
@@ -218,7 +286,6 @@
   ----------------------------------------- */
 
   .hero {
-
     padding: 24px;
 
     min-height: auto;
@@ -235,9 +302,7 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.35);
   }
 
-
   .primary-btn {
-
     width: 100%;
 
     text-align: center;
@@ -249,13 +314,10 @@
   ----------------------------------------- */
 
   .stats-grid {
-
     gap: 10px;
   }
 
-
   .stat-card {
-
     padding: 17px;
 
     box-shadow:
@@ -264,15 +326,11 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.85);
   }
 
-
   .stat-card:hover {
-
     transform: translateY(-2px);
   }
 
-
   .stat-card strong {
-
     font-size: 23px;
   }
 
@@ -282,7 +340,6 @@
   ----------------------------------------- */
 
   .panel {
-
     padding: 18px;
 
     box-shadow:
@@ -297,13 +354,10 @@
   ----------------------------------------- */
 
   .performance {
-
     gap: 20px;
   }
 
-
   .performance-circle {
-
     width: 110px;
     height: 110px;
 
@@ -313,9 +367,7 @@
       inset 0 -3px 6px rgba(255, 255, 255, 0.8);
   }
 
-
   .performance-circle span {
-
     font-size: 23px;
   }
 
@@ -327,7 +379,6 @@
   .secondary-btn,
   .quick-action,
   .save-btn {
-
     box-shadow:
       0 6px 13px rgba(0, 0, 0, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.7);
@@ -340,7 +391,6 @@
 
   .mini-card,
   .profile-card {
-
     box-shadow:
       0 7px 16px rgba(0, 0, 0, 0.08),
       0 2px 5px rgba(0, 0, 0, 0.04),
@@ -354,7 +404,6 @@
 
   .table-wrapper,
   .table-container {
-
     width: 100%;
     max-width: 100%;
 
@@ -373,22 +422,14 @@
 
 @media (max-width: 450px) {
 
-
-  /* -----------------------------------------
-     TOPBAR
-  ----------------------------------------- */
-
   .topbar {
-
     padding: 0 16px;
 
     box-shadow:
       0 5px 15px rgba(0, 0, 0, 0.10);
   }
 
-
   .brand strong {
-
     font-size: 12px;
   }
 
@@ -398,7 +439,6 @@
   ----------------------------------------- */
 
   .stats-grid {
-
     grid-template-columns: 1fr 1fr;
   }
 
@@ -408,15 +448,12 @@
   ----------------------------------------- */
 
   .performance {
-
     flex-direction: column;
 
     align-items: stretch;
   }
 
-
   .performance-circle {
-
     margin: auto;
   }
 
@@ -426,7 +463,6 @@
   ----------------------------------------- */
 
   .panel-header {
-
     align-items: flex-start;
   }
 
@@ -440,15 +476,12 @@
   .dashboard-hero,
   .dashboard-panel,
   .profile-card {
-
     border-radius: 13px;
   }
-
 
   .stat-card,
   .dashboard-stat,
   .mini-card {
-
     border-radius: 13px;
   }
 
@@ -460,7 +493,6 @@
   .primary-btn,
   .secondary-btn,
   .save-btn {
-
     border-radius: 10px;
   }
 
@@ -470,7 +502,6 @@
   ----------------------------------------- */
 
   .main-content {
-
     width: 100%;
 
     max-width: 100%;
@@ -478,10 +509,8 @@
     overflow-x: hidden;
   }
 
-
   .table-wrapper,
   .table-container {
-
     max-width: 100%;
 
     overflow-x: auto;
@@ -500,23 +529,17 @@
     width: 205px;
   }
 
-
   .main-content {
-
     padding-left: 12px;
     padding-right: 12px;
   }
-
 
   .topbar {
-
     padding-left: 12px;
     padding-right: 12px;
   }
 
-
   .menu-btn {
-
     width: 40px;
     height: 40px;
   }
